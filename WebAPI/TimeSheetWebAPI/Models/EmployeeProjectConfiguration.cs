@@ -15,7 +15,7 @@ namespace TimeSheetWebAPI.Models
 
             //builder.HasOne<Employee>(ep => ep.Employee)
             //    .WithMany(e => e.Employee_Projects)
-            //    .HasForeignKey(ep => ep.EmpId);
+            //    .HasForeignKey(ep => ep.Id);
 
             //builder.HasOne<Project>(ep => ep.Project)
             //    .WithMany(e => e.Employee_Projects)

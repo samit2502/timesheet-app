@@ -20,6 +20,7 @@ namespace TimeSheetWebAPI.Models
         public DateTime PorjectStartDate { get; set; }
         [Required]
         public DateTime ProjectEndDate { get; set; }
+
         public ICollection<Employee_Project> Employee_Projects { get; set; }
     }
 }

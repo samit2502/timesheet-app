@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Threading.Tasks;
 
 namespace TimeSheetWebAPI.Models
 {
-    public class Employee
+    public class Employee: IdentityUser
     {
         public enum StatusInd
         {
@@ -17,18 +19,7 @@ namespace TimeSheetWebAPI.Models
             Sabbatical,
             YetToJoin,
         }
-        [Key]
-        public Guid EmployeeId { get; set; }
-        [Required]
-        public string EmpId { get; set; }
-        [Required]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
-        [Required]
-        public string EmailId { get; set; }
-        [Required]
-        public string ContactNumber { get; set; }
+        [Column(TypeName ="nvarchar(256)")]
         [Required]
         public string Designation { get; set; }
         [Required]
@@ -37,6 +28,8 @@ namespace TimeSheetWebAPI.Models
         public bool IsAdmin { get; set; }
         [Required]
         public StatusInd Status { get; set; }
+        [Column(TypeName = "nvarchar(256)")]
+        public string FullName { get; set; }
         public ICollection<Employee_Project> Employee_Projects { get; set; }
     }
 }

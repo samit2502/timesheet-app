@@ -22,6 +22,8 @@
     <Compile Remove="Migrations\20200401064414_TimeSheetWebAPI.Models.TimeSheetContextSeed2.Designer.cs" />
     <Compile Remove="Migrations\20200401065503_TimeSheetWebAPI.Models.TimeSheetContext.cs" />
     <Compile Remove="Migrations\20200401065503_TimeSheetWebAPI.Models.TimeSheetContext.Designer.cs" />
+    <Compile Remove="Migrations\20200401180428_EmployeeProjectJunction.cs" />
+    <Compile Remove="Migrations\20200401180428_EmployeeProjectJunction.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

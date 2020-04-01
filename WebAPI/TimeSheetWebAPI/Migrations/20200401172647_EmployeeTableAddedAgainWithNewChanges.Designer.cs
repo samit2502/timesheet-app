@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeSheetWebAPI.Models;
 
 namespace TimeSheetWebAPI.Migrations
 {
     [DbContext(typeof(TimeSheetContext))]
-    partial class TimeSheetContextModelSnapshot : ModelSnapshot
+    [Migration("20200401172647_EmployeeTableAddedAgainWithNewChanges")]
+    partial class EmployeeTableAddedAgainWithNewChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,33 +223,6 @@ namespace TimeSheetWebAPI.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("TimeSheetWebAPI.Models.Employee_Project", b =>
-                {
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("ProjectId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("EmployeeId", "ProjectId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("Employee_Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeId = "e984e550-3ab1-44fe-ad3d-75504f8ead3a",
-                            ProjectId = new Guid("99eed6eb-8cdc-40e0-a212-45bd018115db")
-                        },
-                        new
-                        {
-                            EmployeeId = "e984e550-3ab1-44fe-ad3d-75504f8ead3a",
-                            ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3")
-                        });
-                });
-
             modelBuilder.Entity("TimeSheetWebAPI.Models.Project", b =>
                 {
                     b.Property<Guid>("ProjectId")
@@ -271,24 +246,6 @@ namespace TimeSheetWebAPI.Migrations
                     b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            ProjectId = new Guid("99eed6eb-8cdc-40e0-a212-45bd018115db"),
-                            PorjectStartDate = new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ProId = "OP00000001",
-                            ProjectEndDate = new DateTime(2030, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ProjectName = "Project-X"
-                        },
-                        new
-                        {
-                            ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
-                            PorjectStartDate = new DateTime(2016, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ProId = "OP00000002",
-                            ProjectEndDate = new DateTime(2030, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ProjectName = "Project-Y"
-                        });
                 });
 
             modelBuilder.Entity("TimeSheetWebAPI.Models.Employee", b =>
@@ -364,21 +321,6 @@ namespace TimeSheetWebAPI.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TimeSheetWebAPI.Models.Employee_Project", b =>
-                {
-                    b.HasOne("TimeSheetWebAPI.Models.Employee", "Employee")
-                        .WithMany("Employee_Projects")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TimeSheetWebAPI.Models.Project", "Project")
-                        .WithMany("Employee_Projects")
-                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

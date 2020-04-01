@@ -8,25 +8,25 @@ using TimeSheetWebAPI.Models.Repository;
 
 namespace TimeSheetWebAPI.Models.DataManager
 {
-    public class EmployeeDataMangaer : IDataRepository<Employee>
-    {
-        readonly TimeSheetContext _employeeContext;
+    //public class EmployeeDataMangaer : IDataRepository<Employee>
+    //{
+    //    readonly TimeSheetContext _employeeContext;
 
-        public EmployeeDataMangaer(TimeSheetContext context)
-        {
-            _employeeContext = context;
-        }
+    //    public EmployeeDataMangaer(TimeSheetContext context)
+    //    {
+    //        _employeeContext = context;
+    //    }
 
-        public IEnumerable<Employee> GetAll()
-        {
-            //return _employeeContext.Employees.ToList();
-            List<Employee> employees = new List<Employee>();
-            foreach (var employee in _employeeContext.Employees.ToList())
-            {
-                employee.Employee_Projects = _employeeContext.Employee_Projects.Where(ep => ep.EmployeeId == employee.EmployeeId).ToList();
-                employees.Add(employee);
-            }
-            return employees;
-        }
-    }
+    //    public IEnumerable<Employee> GetAll()
+    //    {
+    //        return _employeeContext.Employees.ToList();
+    //        List<Employee> employees = new List<Employee>();
+    //        foreach (var employee in _employeeContext.Employees.ToList())
+    //        {
+    //            employee.Employee_Projects = _employeeContext.Employee_Projects.Where(ep => ep.EmployeeId == employee.EmployeeId).ToList();
+    //            employees.Add(employee);
+    //        }
+    //        return employees;
+    //    }
+    //}
 }

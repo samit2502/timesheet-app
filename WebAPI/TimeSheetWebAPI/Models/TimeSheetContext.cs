@@ -24,34 +24,34 @@ namespace TimeSheetWebAPI.Models
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new EmployeeProjectConfiguration());
 
-            modelBuilder.Entity<Employee>().HasData(new Employee
-            {
-                EmployeeId = Guid.Parse("e809d7b6-618a-4b5d-a2b8-9dfeefb29f85"),
-                FirstName = "Samitanjaya",
-                LastName = "Mishra",
-                EmpId = "SM00000001",
-                EmailId = "abc@xyz.com",
-                ContactNumber = "1234567891",
-                Designation = "Software Engineer",
-                DateOfJoining = new System.DateTime(2019, 08, 05),
-                IsManager = false,
-                IsAdmin = false,
-                Status = Employee.StatusInd.Active
+            //modelBuilder.Entity<Employee>().HasData(new Employee
+            //{
+            //    EmployeeId = Guid.Parse("e809d7b6-618a-4b5d-a2b8-9dfeefb29f85"),
+            //    FirstName = "Samitanjaya",
+            //    LastName = "Mishra",
+            //    EmpId = "SM00000001",
+            //    EmailId = "abc@xyz.com",
+            //    ContactNumber = "1234567891",
+            //    Designation = "Software Engineer",
+            //    DateOfJoining = new System.DateTime(2019, 08, 05),
+            //    IsManager = false,
+            //    IsAdmin = false,
+            //    Status = Employee.StatusInd.Active
 
-            }, new Employee
-            {
-                EmployeeId = Guid.Parse("a9adb739-2b74-4cd1-b3a8-ba1a3ed65cd4"),
-                FirstName = "Saswati",
-                LastName = "Mohanty",
-                EmpId = "SM00000002",
-                EmailId = "abcd@xyza.com",
-                ContactNumber = "1234567092",
-                Designation = "Senior Software Engineer",
-                DateOfJoining = new System.DateTime(2016, 01, 05),
-                IsManager = false,
-                IsAdmin = false,
-                Status = Employee.StatusInd.Active
-            });
+            //}, new Employee
+            //{
+            //    EmployeeId = Guid.Parse("a9adb739-2b74-4cd1-b3a8-ba1a3ed65cd4"),
+            //    FirstName = "Saswati",
+            //    LastName = "Mohanty",
+            //    EmpId = "SM00000002",
+            //    EmailId = "abcd@xyza.com",
+            //    ContactNumber = "1234567092",
+            //    Designation = "Senior Software Engineer",
+            //    DateOfJoining = new System.DateTime(2016, 01, 05),
+            //    IsManager = false,
+            //    IsAdmin = false,
+            //    Status = Employee.StatusInd.Active
+            //});
 
             modelBuilder.Entity<Project>().HasData(new Project
             {
@@ -72,13 +72,13 @@ namespace TimeSheetWebAPI.Models
 
             modelBuilder.Entity<Employee_Project>().HasData(new Employee_Project
             {
-                EmployeeId = new Guid("e809d7b6-618a-4b5d-a2b8-9dfeefb29f85"),
-                ProjectId = new Guid("99eed6eb-8cdc-40e0-a212-45bd018115db")
+                EmployeeId = "e984e550-3ab1-44fe-ad3d-75504f8ead3a",
+                ProjectId = Guid.Parse("99eed6eb-8cdc-40e0-a212-45bd018115db")
 
             }, new Employee_Project
             {
-                EmployeeId = new Guid("a9adb739-2b74-4cd1-b3a8-ba1a3ed65cd4"),
-                ProjectId = new Guid("99eed6eb-8cdc-40e0-a212-45bd018115db")
+                EmployeeId = "e984e550-3ab1-44fe-ad3d-75504f8ead3a",
+                ProjectId = Guid.Parse("81f7a3a4-6d95-4db0-9906-fc3798014fc3")
             });
         }
 

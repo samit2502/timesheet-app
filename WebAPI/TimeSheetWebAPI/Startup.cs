@@ -38,7 +38,7 @@ namespace TimeSheetWebAPI
             services.ConfigureIISIntergration();
             services.AddDbContext<TimeSheetContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TimeSheetCFDB"]));
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<TimeSheetContext>();
-            services.AddScoped<IDataRepository<Employee>, EmployeeDataMangaer>();
+            //services.AddScoped<IDataRepository<Employee>, EmployeeDataMangaer>();
             services.AddControllers().AddNewtonsoftJson(opts => opts.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
