@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeSheetWebAPI.Models;
 
 namespace TimeSheetWebAPI.Migrations
 {
     [DbContext(typeof(TimeSheetContext))]
-    partial class TimeSheetContextModelSnapshot : ModelSnapshot
+    [Migration("20200402155556_IdentityExtension")]
+    partial class IdentityExtension
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,35 +247,22 @@ namespace TimeSheetWebAPI.Migrations
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TimesheetId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("EmployeeId", "ProjectId", "TimesheetId");
+                    b.HasKey("EmployeeId", "ProjectId");
 
                     b.HasIndex("ProjectId");
-
-                    b.HasIndex("TimesheetId");
 
                     b.ToTable("Employee_Projects");
 
                     b.HasData(
                         new
                         {
-                            EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
-                            ProjectId = new Guid("99eed6eb-8cdc-40e0-a212-45bd018115db"),
-                            TimesheetId = new Guid("99eed3ad-9ddd-41e1-a234-66bd123456aa")
+                            EmployeeId = "e984e550-3ab1-44fe-ad3d-75504f8ead3a",
+                            ProjectId = new Guid("99eed6eb-8cdc-40e0-a212-45bd018115db")
                         },
                         new
                         {
-                            EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
-                            ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
-                            TimesheetId = new Guid("0f8b0291-a728-43dc-bce7-fb8ad363f339")
-                        },
-                        new
-                        {
-                            EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
-                            ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
-                            TimesheetId = new Guid("99eed3ad-9ddd-41e1-a234-66bd123456aa")
+                            EmployeeId = "e984e550-3ab1-44fe-ad3d-75504f8ead3a",
+                            ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3")
                         });
                 });
 
@@ -317,72 +306,6 @@ namespace TimeSheetWebAPI.Migrations
                             ProId = "OP00000002",
                             ProjectEndDate = new DateTime(2030, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProjectName = "Project-Y"
-                        });
-                });
-
-            modelBuilder.Entity("TimeSheetWebAPI.Models.TimeSheet", b =>
-                {
-                    b.Property<Guid>("TimeSheetId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("DayFiveHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DayFourHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DayOneHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DaySevenHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DaySixHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DayThreeHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DayTwoHours")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("WeekEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("WeekStartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("TimeSheetId");
-
-                    b.ToTable("TimeSheets");
-
-                    b.HasData(
-                        new
-                        {
-                            TimeSheetId = new Guid("99eed3ad-9ddd-41e1-a234-66bd123456aa"),
-                            DayFiveHours = 8,
-                            DayFourHours = 8,
-                            DayOneHours = 8,
-                            DaySevenHours = 0,
-                            DaySixHours = 0,
-                            DayThreeHours = 8,
-                            DayTwoHours = 8,
-                            WeekEndDate = new DateTime(2020, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            WeekStartDate = new DateTime(2020, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            TimeSheetId = new Guid("0f8b0291-a728-43dc-bce7-fb8ad363f339"),
-                            DayFiveHours = 8,
-                            DayFourHours = 8,
-                            DayOneHours = 8,
-                            DaySevenHours = 0,
-                            DaySixHours = 0,
-                            DayThreeHours = 8,
-                            DayTwoHours = 8,
-                            WeekEndDate = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            WeekStartDate = new DateTime(2020, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -448,12 +371,6 @@ namespace TimeSheetWebAPI.Migrations
                     b.HasOne("TimeSheetWebAPI.Models.Project", "Project")
                         .WithMany("Employee_Projects")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TimeSheetWebAPI.Models.TimeSheet", "TimeSheet")
-                        .WithMany("Employee_Projects")
-                        .HasForeignKey("TimesheetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

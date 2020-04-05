@@ -24,6 +24,12 @@
     <Compile Remove="Migrations\20200401065503_TimeSheetWebAPI.Models.TimeSheetContext.Designer.cs" />
     <Compile Remove="Migrations\20200401180428_EmployeeProjectJunction.cs" />
     <Compile Remove="Migrations\20200401180428_EmployeeProjectJunction.Designer.cs" />
+    <Compile Remove="Migrations\20200402154649_IdentityExtension.cs" />
+    <Compile Remove="Migrations\20200402154649_IdentityExtension.Designer.cs" />
+    <Compile Remove="Migrations\20200402154932_IdentityExtension.cs" />
+    <Compile Remove="Migrations\20200402154932_IdentityExtension.Designer.cs" />
+    <Compile Remove="Migrations\20200402155342_IdentityExtension.cs" />
+    <Compile Remove="Migrations\20200402155342_IdentityExtension.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

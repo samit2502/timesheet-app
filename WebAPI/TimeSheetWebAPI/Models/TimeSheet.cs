@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 //using System.Collections.Generic;
@@ -10,9 +11,7 @@ namespace TimeSheetWebAPI.Models
     public class TimeSheet
     {
         [Key]
-        public Guid Id { get; set; }
-        [Required]
-        public string ProjectId { get; set; }
+        public Guid TimeSheetId { get; set; }
         public DateTime WeekStartDate { get; set; }
         public DateTime WeekEndDate { get; set; }
         [Required]
@@ -29,5 +28,6 @@ namespace TimeSheetWebAPI.Models
         public int DaySixHours { get; set; }
         [Required]
         public int DaySevenHours { get; set; }
+        public ICollection<Employee_Project> Employee_Projects { get; set; }
     }
 }

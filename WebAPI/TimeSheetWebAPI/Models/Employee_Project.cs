@@ -11,5 +11,7 @@ namespace TimeSheetWebAPI.Models
         public Employee Employee { get; set; }
         public Guid ProjectId { get; set; }
         public Project Project { get; set; }
+        public Guid TimesheetId { get; set; }
+        public TimeSheet TimeSheet { get; set; }
     }
 }

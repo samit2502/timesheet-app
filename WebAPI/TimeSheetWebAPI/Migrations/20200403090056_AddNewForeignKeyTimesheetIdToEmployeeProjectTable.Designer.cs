@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeSheetWebAPI.Models;
 
 namespace TimeSheetWebAPI.Migrations
 {
     [DbContext(typeof(TimeSheetContext))]
-    partial class TimeSheetContextModelSnapshot : ModelSnapshot
+    [Migration("20200403090056_AddNewForeignKeyTimesheetIdToEmployeeProjectTable")]
+    partial class AddNewForeignKeyTimesheetIdToEmployeeProjectTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,26 +257,6 @@ namespace TimeSheetWebAPI.Migrations
                     b.HasIndex("TimesheetId");
 
                     b.ToTable("Employee_Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
-                            ProjectId = new Guid("99eed6eb-8cdc-40e0-a212-45bd018115db"),
-                            TimesheetId = new Guid("99eed3ad-9ddd-41e1-a234-66bd123456aa")
-                        },
-                        new
-                        {
-                            EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
-                            ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
-                            TimesheetId = new Guid("0f8b0291-a728-43dc-bce7-fb8ad363f339")
-                        },
-                        new
-                        {
-                            EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
-                            ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
-                            TimesheetId = new Guid("99eed3ad-9ddd-41e1-a234-66bd123456aa")
-                        });
                 });
 
             modelBuilder.Entity("TimeSheetWebAPI.Models.Project", b =>
@@ -347,6 +329,10 @@ namespace TimeSheetWebAPI.Migrations
                     b.Property<int>("DayTwoHours")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProjectId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("WeekEndDate")
                         .HasColumnType("datetime2");
 
@@ -356,34 +342,6 @@ namespace TimeSheetWebAPI.Migrations
                     b.HasKey("TimeSheetId");
 
                     b.ToTable("TimeSheets");
-
-                    b.HasData(
-                        new
-                        {
-                            TimeSheetId = new Guid("99eed3ad-9ddd-41e1-a234-66bd123456aa"),
-                            DayFiveHours = 8,
-                            DayFourHours = 8,
-                            DayOneHours = 8,
-                            DaySevenHours = 0,
-                            DaySixHours = 0,
-                            DayThreeHours = 8,
-                            DayTwoHours = 8,
-                            WeekEndDate = new DateTime(2020, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            WeekStartDate = new DateTime(2020, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            TimeSheetId = new Guid("0f8b0291-a728-43dc-bce7-fb8ad363f339"),
-                            DayFiveHours = 8,
-                            DayFourHours = 8,
-                            DayOneHours = 8,
-                            DaySevenHours = 0,
-                            DaySixHours = 0,
-                            DayThreeHours = 8,
-                            DayTwoHours = 8,
-                            WeekEndDate = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            WeekStartDate = new DateTime(2020, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

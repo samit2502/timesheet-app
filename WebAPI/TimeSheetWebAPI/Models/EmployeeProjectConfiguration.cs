@@ -11,8 +11,8 @@ namespace TimeSheetWebAPI.Models
     {
         public void Configure(EntityTypeBuilder<Employee_Project> builder)
         {
-            builder.HasKey(ep => new { ep.EmployeeId, ep.ProjectId });
-
+            builder.HasKey(ep => new { ep.EmployeeId, ep.ProjectId, ep.TimesheetId });
+            
             //builder.HasOne<Employee>(ep => ep.Employee)
             //    .WithMany(e => e.Employee_Projects)
             //    .HasForeignKey(ep => ep.Id);

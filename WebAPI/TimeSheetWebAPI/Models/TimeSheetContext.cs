@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TimeSheetWebAPI.Models
 {
-    public class TimeSheetContext: IdentityDbContext
+    public class TimeSheetContext: IdentityDbContext<Employee>
     {
         public TimeSheetContext(DbContextOptions options): base(options)
         {
@@ -23,6 +23,7 @@ namespace TimeSheetWebAPI.Models
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new EmployeeProjectConfiguration());
+                
 
             //modelBuilder.Entity<Employee>().HasData(new Employee
             //{
@@ -70,20 +71,52 @@ namespace TimeSheetWebAPI.Models
                 ProjectEndDate = new System.DateTime(2030, 02, 01)
             });
 
+            modelBuilder.Entity<TimeSheet>().HasData(new TimeSheet
+            {
+                TimeSheetId = Guid.Parse("99eed3ad-9ddd-41e1-a234-66bd123456aa"),
+                WeekStartDate = new DateTime(2020, 04, 05),
+                WeekEndDate =  new DateTime(2020, 04, 11),
+                DayOneHours = 8,
+                DayTwoHours = 8,
+                DayThreeHours = 8,
+                DayFourHours = 8,
+                DayFiveHours = 8
+
+            }, new TimeSheet
+            {
+                TimeSheetId = Guid.Parse("0f8b0291-a728-43dc-bce7-fb8ad363f339"),
+                WeekStartDate = new DateTime(2020, 03, 22),
+                WeekEndDate = new DateTime(2020, 03, 28),
+                DayOneHours = 8,
+                DayTwoHours = 8,
+                DayThreeHours = 8,
+                DayFourHours = 8,
+                DayFiveHours = 8
+            });
+
             modelBuilder.Entity<Employee_Project>().HasData(new Employee_Project
             {
-                EmployeeId = "e984e550-3ab1-44fe-ad3d-75504f8ead3a",
-                ProjectId = Guid.Parse("99eed6eb-8cdc-40e0-a212-45bd018115db")
+                EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
+                ProjectId = Guid.Parse("99eed6eb-8cdc-40e0-a212-45bd018115db"),
+                TimesheetId = Guid.Parse("99eed3ad-9ddd-41e1-a234-66bd123456aa")
 
             }, new Employee_Project
             {
-                EmployeeId = "e984e550-3ab1-44fe-ad3d-75504f8ead3a",
-                ProjectId = Guid.Parse("81f7a3a4-6d95-4db0-9906-fc3798014fc3")
+                EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
+                ProjectId = Guid.Parse("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
+                TimesheetId = Guid.Parse("0f8b0291-a728-43dc-bce7-fb8ad363f339")
+
+            }, new Employee_Project
+            {
+                EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
+                ProjectId = Guid.Parse("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
+                TimesheetId = Guid.Parse("99eed3ad-9ddd-41e1-a234-66bd123456aa")
             });
         }
 
-        public DbSet<Employee> Employees { get; set; }
+        //public DbSet<Employee> Employees { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Employee_Project> Employee_Projects { get; set; }
+        public DbSet<TimeSheet> TimeSheets { get; set; }
     }
 }

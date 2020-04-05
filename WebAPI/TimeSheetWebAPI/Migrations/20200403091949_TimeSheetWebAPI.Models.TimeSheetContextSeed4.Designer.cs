@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeSheetWebAPI.Models;
 
 namespace TimeSheetWebAPI.Migrations
 {
     [DbContext(typeof(TimeSheetContext))]
-    partial class TimeSheetContextModelSnapshot : ModelSnapshot
+    [Migration("20200403091949_TimeSheetWebAPI.Models.TimeSheetContextSeed4")]
+    partial class TimeSheetWebAPIModelsTimeSheetContextSeed4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,12 +270,6 @@ namespace TimeSheetWebAPI.Migrations
                             EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
                             ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
                             TimesheetId = new Guid("0f8b0291-a728-43dc-bce7-fb8ad363f339")
-                        },
-                        new
-                        {
-                            EmployeeId = "e183d367-424b-4957-9cdf-8c9031b708bd",
-                            ProjectId = new Guid("81f7a3a4-6d95-4db0-9906-fc3798014fc3"),
-                            TimesheetId = new Guid("99eed3ad-9ddd-41e1-a234-66bd123456aa")
                         });
                 });
 
