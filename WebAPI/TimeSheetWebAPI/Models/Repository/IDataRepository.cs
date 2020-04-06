@@ -9,6 +9,7 @@ namespace TimeSheetWebAPI.Models.Repository
     public interface IDataRepository<TEntity>
     {
         IEnumerable<TEntity> GetAll();
+        string GetUserName(string FirstName, string LastName);
         //TEntity Get(Guid Id);
         //IEnumerable<TEntity> Add(TEntity entity);
         //IEnumerable<TEntity> Update(TEntity dbEntity, TEntity entity);

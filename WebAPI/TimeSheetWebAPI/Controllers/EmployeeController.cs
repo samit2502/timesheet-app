@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TimeSheetWebAPI.Models;
@@ -10,9 +11,10 @@ using TimeSheetWebAPI.Models.Repository;
 namespace TimeSheetWebAPI.Controllers
 {
     //[Route("")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [ApiController]
     [Route("Employee")]
     [Route("api/Employee")]
-    [ApiController]
     public class EmployeeController : ControllerBase
     {
         private readonly IDataRepository<Employee> _dataRepository;
@@ -21,7 +23,6 @@ namespace TimeSheetWebAPI.Controllers
             _dataRepository = dataRepository;
         }
 
-        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {

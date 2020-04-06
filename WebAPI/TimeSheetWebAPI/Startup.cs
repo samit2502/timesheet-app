@@ -19,6 +19,9 @@ using TimeSheetWebAPI.Models;
 using TimeSheetWebAPI.Models.Repository;
 using TimeSheetWebAPI.Models.DataManager;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace TimeSheetWebAPI
 {
@@ -38,6 +41,22 @@ namespace TimeSheetWebAPI
             services.ConfigureIISIntergration();
             services.AddDbContext<TimeSheetContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TimeSheetCFDB"]));
             services.AddIdentity<Employee, IdentityRole>().AddEntityFrameworkStores<TimeSheetContext>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        RequireExpirationTime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration.GetValue<string>("JwtIssuer"),
+                        ValidAudience = Configuration.GetValue<string>("JwtAudience"),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("JwtSecretKey"))),
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
             services.AddScoped<IDataRepository<Employee>, EmployeeDataMangaer>();
             services.AddControllers().AddNewtonsoftJson(opts => opts.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
@@ -59,11 +78,9 @@ namespace TimeSheetWebAPI
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
-
-            app.UseAuthentication();
-
+            
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
