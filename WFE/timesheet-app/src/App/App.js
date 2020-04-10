@@ -1,26 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Router } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { history } from '../_helpers';
+import { alertActions } from '../_actions';
+import { PrivateRoute } from '../_components';
+import { LoginPage } from '../LoginPage';
+import { LandingPage } from '../LandingPage';
+
+class App extends React.Component {
+  constructor(props){
+    super(props);
+
+    const { dispatch } = this.props;
+    history.listen((location, action) => {
+      //clear alert on locaiton change
+      dispatch(alertActions.clear());
+    });
+  }
+
+  render() {
+    const { alert } = this.props;
+    return(
+      <div>
+        {/* <div className='container-fluid'>
+          <div className='col-sm-8 col-sm-offset-2'> */}
+            {alert.message &&
+                <div className={`alert ${alert.type}`}>{alert.message}</div>
+            }
+            <Router history={history}>
+              <div>
+                <PrivateRoute exact path="/" component={LoginPage} />
+                <Route path="/login" component={LoginPage} />
+                <Route path="/landingPage" component={LandingPage} />
+              </div>
+            </Router>
+          {/* </div>
+        </div> */}
+      </div>
+    );
+  }
 }
 
-export default App;
+function mapStateToProps(state) {
+  const{ alert } = state;
+  return {
+    alert
+  };
+}
+
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App };

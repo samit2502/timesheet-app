@@ -18,10 +18,10 @@ export function employees(state = {}, action) {
             return {
                 ...state,
                 items: state.items.map(employee =>
-                        employee.id === action.id
-                        ? (...employee, deleting: true)
-                        : employee
-                    )
+                    employee.Id === action.Id ? 
+                    { ...employee, deleting: true } : 
+                    employee 
+                )
             };
         case employeeConstants.DELETE_SUCCESS:
             return {

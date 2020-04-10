@@ -12,6 +12,7 @@ namespace TimeSheetWebAPI.Controllers
 {
     //[Route("")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize]
     [ApiController]
     [Route("Employee")]
     [Route("api/Employee")]

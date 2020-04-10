@@ -1,2 +1,1 @@
-export * from './App'
-export * from './App.test'
+export * from './App';

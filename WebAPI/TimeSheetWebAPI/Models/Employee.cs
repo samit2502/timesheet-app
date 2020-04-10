@@ -33,5 +33,6 @@ namespace TimeSheetWebAPI.Models
         [Column(TypeName = "nvarchar(256)")]
         public string Address { get; set; }
         public ICollection<Employee_Project> Employee_Projects { get; set; }
+        public string Token { get; set; }
     }
 }

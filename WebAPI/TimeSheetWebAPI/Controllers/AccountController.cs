@@ -75,7 +75,10 @@ namespace TimeSheetWebAPI.Controllers
                 if (result.Succeeded == true)
                 {
                     var employee = _userManager.Users.SingleOrDefault(emp => emp.UserName == loginModel.UserName);
-                    return Ok(GenerateJwtToken(loginModel.UserName, employee));
+                    //return Ok(GenerateJwtToken(loginModel.UserName, employee));
+                    employee.Token = GenerateJwtToken(loginModel.UserName, employee).ToString();
+                    employee.PasswordHash = null;
+                    return Ok(employee);
                 }
                 else
                 {
