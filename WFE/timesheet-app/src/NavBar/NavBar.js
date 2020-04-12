@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './NavBar.css';
 
@@ -8,7 +9,8 @@ class NavBar extends React.Component {
         super(props);
 
         this.state = {
-            menu: false
+            menu: false,
+            FullName: props.FullName
         };
 
         this.toggleMenu = this.toggleMenu.bind(this);
@@ -19,6 +21,7 @@ class NavBar extends React.Component {
     }
     render() {
         const show = (this.state.menu) ? "show": "";
+        const FullName = this.state.FullName;
 
         return(
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -37,12 +40,13 @@ class NavBar extends React.Component {
                     {/* Dropdown */}
                     <li className="nav-item dropdown navbar-dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbardrop" onClick={ this.toggleMenu }>
-                            Dropdown link
+                            {FullName}
                         </a>
                         <div className={ "dropdown-menu navbar-dropdown-menu " + show}>
                             <a className="dropdown-item" href="#">Link 1</a>
                             <a className="dropdown-item" href="#">Link 2</a>
-                            <a className="dropdown-item" href="#">Link 3</a>
+                            {/* <a className="dropdown-item" href="#">Link 3</a> */}
+                            <Link to='/login'>Logout</Link>
                         </div>
                     </li>
                 </ul>
@@ -51,9 +55,9 @@ class NavBar extends React.Component {
     }
 }
 
-function mapStateToPros(state) {
+// function mapStateToProps(state) {
 
-}
+// }
 
-const connectedNavBar = connect(mapStateToPros)(NavBar);
-export { connectedNavBar as NavBar };
+// const connectedNavBar = connect(mapStateToProps)(NavBar);
+export {  NavBar };

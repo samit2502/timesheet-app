@@ -108,7 +108,7 @@ namespace TimeSheetWebAPI.Controllers
                 _configuration["JwtIssuer"],
                 _configuration["JwtAudience"],
                 claims,
-                expires: DateTime.Now.AddMinutes(10),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds
             );
 
